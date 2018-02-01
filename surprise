@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xcowsay --image=/net/cremi/gchupin/espaces/travail/2k/MPella.png --dream=/net/cremi/gchupin/espaces/travail/2k/dream.jpg --time=3600

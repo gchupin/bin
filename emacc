@@ -1,0 +1,5 @@
+#!/bin/bash
+
+touch $1.c;
+echo -e \#include \<stdio.h\>"\n"\#include \<stdlib.h\>"\n\n"int main\(void\)\{"\n\n"\} > $1.c;
+emacs $1.c &

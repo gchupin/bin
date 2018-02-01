@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ -f "./Makefile" ];
+then
+    echo "Makefile existe déjà";
+
+else
+    touch Makefile;
+   
+    echo -e \#le compilateur"\n"CC= gcc"\n\n"\#les flags de compilation"\n"CFLAGS= -std=c99 -Wall -Werror -g"\n\n"\#le nom du fichier executable"\n"OUTFILE= "\n\n"\#les fichiers objets"\n"OBJS= "\n\n"\$\(OUTFILE\): \$\(OBJS\)"\n\t"\$\(CC\) \$^ \-o \$@"\n\n"\%o: \%c"\n"\t\$\(CC\) -c \$\(CFLAGS\) \$\< \-o \$@"\n\n"\<fichiers objets\>"\n\n"clean:"\n\t"rm -f \$\(OBJS\) \$\(OUTFILE\) >> Makefile;
+
+    emacs Makefile ;
+
+fi

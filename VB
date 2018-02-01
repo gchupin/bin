@@ -1,0 +1,10 @@
+#!/bin/bash
+
+case $1 in
+    "save")
+	cp -r  /tmp/VBOX-gchupin-windows-7-amd64-entreprise/ ~/espaces/travail/
+	;;
+    "recup")
+	cp -r  ~/espaces/travail/VBOX-gchupin-windows-7-amd64-entreprise/ /tmp/
+	;;
+esac

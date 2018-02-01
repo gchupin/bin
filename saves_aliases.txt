@@ -1,0 +1,6 @@
+alias wk='cd ~/Programmation1/src'
+alias emacc='emacc.sh'
+alias mkmake='mkmake.sh'
+alias spam='spam.sh'
+alias gcc+='gcc+.sh'
+alias dl='dl.sh'
