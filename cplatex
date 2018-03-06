@@ -7,14 +7,6 @@ compilation ()
     pdflatex $1;
 }
 
-suppression ()
-{
-    rm $1.log
-    rm $1.aux
-    rm $1.toc
-    rm $1.out
-}
-
 usage ()
 {
     echo "Usage :"
@@ -30,7 +22,20 @@ open_pdf()
     do
 	case $yn in
 	    Yes ) evince $str.pdf & break;;
-	    No  ) exit;;
+	    No  ) break;;
+	esac
+    done
+}
+
+
+delete_all ()
+{
+    str=${1::-4}
+    echo "Do you want to delete $str.aux, $str.bbl, $str.blg, $str.log, $str.out $str.pdf and $str.toc"
+    select yn in "Yes" "No"; do
+	case $yn in
+	    Yes ) rm -f $str.aux $str.bbl $str.blg $str.log $str.out $str.pdf $str.toc; break;;
+	    No  ) break;;
 	esac
     done
 }
@@ -41,18 +46,17 @@ open_pdf()
 # Sans paramètres
 if (( $# == 1 )); then
     compilation $1;
-    suppression $str;
 # Avec Bibliothèque
 elif (( $# == 2 )); then
     if [[ "$1" == "-b" ]]; then
 	str=${2::-4}
 	echo "$str"
-	compilation $str.tex;#on peut le remplacer par pdflatex si on veut gagner en rapiditer(inutile de le faire 3 fois avec la fonction compilation)
+	compilation $str.tex;
 	bibtex $str.aux
 	compilation $str.tex;
-	suppression $str;
-        rm $str.bbl
-	rm $str.blg
+    elif [[ "$1" == "-d" ]];then
+	delete_all $2;
+	exit;
     else
 	usage;
     fi
@@ -62,6 +66,8 @@ fi
 
 if (( $# == 1 )); then
     open_pdf $1;
-elif (( $# == 2 )); then 
+    delete_all $1;
+elif (( $# == 2 )); then
     open_pdf $2;
+    delete_all $2;
 fi

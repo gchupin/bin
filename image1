@@ -1,3 +1,0 @@
-#!/bin/bash
-
-feh -xFY --auto-zoom -D$1 /net/cremi/pabrand/2k/MPe*
