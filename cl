@@ -1,6 +1,6 @@
 #!/bin/bash
 
-    rm -f *~;
-    rm -f \#*; 
+    find *~ -delete 2> /dev/null;
+    find \#* -delete 2> /dev/null; 
     echo "Cleared";
 
